@@ -2,30 +2,28 @@ package dao
 
 import (
 	"gin-system/models"
-	"time"
 )
 
 func GetAllStaff(staffParam map[string]interface{}) (error, []models.Staff, int64) {
 	var staffData []models.Staff
 	page := staffParam["page"].(int)
 	pageSize := staffParam["limit"].(int)
-	searchText := staffParam["searchName"].(string)
+	searchName := staffParam["searchName"].(string)
 	var total int64
-	err := db.Table("erp_staff").Where("staff_name like ? and is_del = false", "%"+searchText+"%").Order("staff_id ASC").Count(&total).Offset((page-1)*pageSize).Limit(pageSize).Find(&staffData).Error
+	err := db.Table("erp_staff").Where("staff_name like ? and is_del = false", "%"+searchName+"%").Order("staff_id ASC").Count(&total).Offset((page-1)*pageSize).Limit(pageSize).Find(&staffData).Error
 	return err, staffData, total
 }
 
 
-func AddStaff(staff models.Staff) (error, models.Staff) {
+func AddStaff(staff models.Staff) (error) {
 	err := db.Table("erp_staff").Select("staff_name", "staff_password", "staff_level", "staff_telephone", "staff_salary", "staff_remarks", "is_del",
 		"update_time").Create(&staff).Error
-	return err, staff
+	return err
 }
 //
-func UpdateStaff(staff models.Staff) (error, models.Staff) {
-	staff.UpdateTime = time.Now()
+func UpdateStaff(staff models.Staff) (error) {
 	err := db.Table("erp_staff").Where("staff_id = ?", staff.StaffId).Updates(&staff).Error
-	return err, staff
+	return err
 }
 
 func DelStaff(id int) error {

@@ -1,11 +1,14 @@
-package service
+package controllers
 
 import (
+	"gin-system/pkg/app"
+	"gin-system/pkg/e"
+	"gin-system/services"
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
 )
 
-func GetInjury(c *gin.Context)  {
+func GetStaff(c *gin.Context)  {
 	page := -1
 	if arg := c.Query("page"); arg != "" {
 		page = com.StrTo(arg).MustInt()
@@ -14,16 +17,16 @@ func GetInjury(c *gin.Context)  {
 	if arg := c.Query("limit"); arg != "" {
 		limit = com.StrTo(arg).MustInt()
 	}
-	searchText := ""
-	if arg := c.Query("searchText"); arg != "" {
-		searchText = arg
+	searchName := ""
+	if arg := c.Query("searchName"); arg != "" {
+		searchName = arg
 	}
-	injuryParam := map[string]interface{}{
+	staffParam := map[string]interface{}{
 		"page": page,
 		"limit": limit,
-		"searchText": searchText,
+		"searchName": searchName,
 	}
-	err, info, total := models.GetAllInjury(injuryParam)
+	err, info, total := services.GetAllStaff(staffParam)
 	//fmt.Println(info);
 	if err !=nil{
 		app.Error(c,e.ERROR,err,err.Error())
@@ -31,4 +34,3 @@ func GetInjury(c *gin.Context)  {
 	}
 	app.OK(c, map[string]interface{}{"value": info, "total": total},"OK")
 }
-
