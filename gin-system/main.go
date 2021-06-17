@@ -13,6 +13,7 @@ func init() {
 }
 
 func main() {
+
 	endPoint := fmt.Sprintf(":%d", setting.ServerSetting.HttpPort)
 	routersInit := routers.InitRouter()
 	routersInit.Run(endPoint)

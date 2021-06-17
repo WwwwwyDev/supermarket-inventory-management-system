@@ -14,10 +14,14 @@
 				<!--伸缩按钮-->
 				<div class="toggle-button" @click="toggleCollapase">|||</div>
 				<el-menu background-color="#545c64" text-color="#fff" active-text-color="#409eff" unique-opened
-					:collapse="isCollapse" :collapse-transition="false" :router="true" :default-active="activePath">
-					<el-menu-item index="2">
+					:collapse="isCollapse" :collapse-transition="false" :router="true">
+					<el-menu-item index="/welcome" key="0">
+						<i class="el-icon-s-home"></i>
+						<template #title>主页</template>
+					</el-menu-item>
+					<el-menu-item :index="it.MenuAddress" v-for="it in menuList" :key="it.MenuId">
 						<i class="el-icon-menu"></i>
-						<template #title>导航二</template>
+						<template #title>{{it.MenuName}}</template>
 					</el-menu-item>
 				</el-menu>
 			</el-aside>
@@ -36,6 +40,15 @@
 			</el-descriptions-item>
 			<el-descriptions-item label="权限等级">
 				<el-tag size="small">{{level}}</el-tag>
+			</el-descriptions-item>
+			<el-descriptions-item label="薪水(元)">
+				<el-tag size="small">{{salary}}</el-tag>
+			</el-descriptions-item>
+			<el-descriptions-item label="电话">
+				<el-tag size="small">{{telephone}}</el-tag>
+			</el-descriptions-item>
+			<el-descriptions-item label="备注">
+				<el-tag size="small">{{remarks}}</el-tag>
 			</el-descriptions-item>
 		</el-descriptions>
 		<template #footer>
@@ -57,12 +70,18 @@
 				dialogVisible: false,
 				username: "",
 				level: 0,
+				salary: 0,
+				remarks: "",
+				telephone: "",
 			}
 		},
 		created() {
 			this.username = window.sessionStorage.getItem('username');
 			this.level = window.sessionStorage.getItem('level');
-			// this.getMenuList();
+			this.salary = window.sessionStorage.getItem('salary') / 100;
+			this.remarks = window.sessionStorage.getItem('remarks');
+			this.telephone = window.sessionStorage.getItem('telephone');
+			this.getMenuList();
 		},
 		methods: {
 			logout() {
@@ -71,22 +90,18 @@
 			},
 			// 获取所有的导航菜单
 			async getMenuList() {
-				// const {
-				// 	data: res
-				// } = await this.$http.get("menus");
-				// console.log(res.data);
-				// if (res.status != 200) return this.$message.error("操作失败！！！");
-				// this.menuList = res.data;
+				const {
+					data: res
+				} = await this.$http.get("system/apis/menu?level=" + this.level);
+				// console.log(res);
+				if (res.code != 20000) return this.$message.error("菜单加载失败");
+				this.menuList = res.data.menus;
+				//console.log(res.data.menus)
 			},
 			// 切换菜单折叠与展开
 			toggleCollapase() {
 				this.isCollapse = !this.isCollapse;
 			},
-			// // 保存二级菜单的路径
-			// saveNavState(activePath) {
-			// 	window.sessionStorage.setItem('activePath', activePath); // 存放点击的二级菜单
-			// 	this.activePath = activePath; // 给点击的菜单添加高亮
-			// },
 		}
 	};
 </script>

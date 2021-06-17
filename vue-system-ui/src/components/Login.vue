@@ -81,8 +81,12 @@
 						this.$message.success(res.msg);
 						//console.log(res.data.user.StaffName)
 						//console.log(res.data.user.StaffLevel)
+						//console.log(res.data.user)
 						window.sessionStorage.setItem('username', res.data.user.StaffName);
 						window.sessionStorage.setItem('level', res.data.user.StaffLevel);
+						window.sessionStorage.setItem('salary', res.data.user.StaffSalary);
+						window.sessionStorage.setItem('remarks', res.data.user.StaffRemarks);
+						window.sessionStorage.setItem('telephone', res.data.user.StaffTelephone);
 						this.$router.push({path: "/home"});
 						return;
 					}
