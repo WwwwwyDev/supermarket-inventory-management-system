@@ -1,4 +1,4 @@
-package staffService
+package services
 
 import (
 	"gin-system/dao"
@@ -11,6 +11,15 @@ func GetAllStaff(staffParam map[string]interface{}) (error, []models.Staff, int6
 	page := staffParam["page"].(int)
 	pageSize := staffParam["limit"].(int)
 	searchName := staffParam["searchName"].(string)
+	err, staffData, total := dao.GetAllStaff(map[string]interface{}{"page": page, "limit": pageSize, "searchName": searchName})
+	return err, staffData, total
+}
+
+func GetStaffByName(name string) (error, []models.Staff, int64) {
+	var staffData []models.Staff
+	page := 1
+	pageSize := 1
+	searchName := name
 	err, staffData, total := dao.GetAllStaff(map[string]interface{}{"page": page, "limit": pageSize, "searchName": searchName})
 	return err, staffData, total
 }

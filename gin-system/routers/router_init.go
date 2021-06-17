@@ -8,6 +8,7 @@ import (
 func sysNoCheckRoleRouter(r *gin.RouterGroup) {
 	r = r.Group("/apis")
 	staffRouter(r)
+	loginRouter(r)
 }
 
 func InitRouter() *gin.Engine {

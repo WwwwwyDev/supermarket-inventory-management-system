@@ -6,6 +6,6 @@ import (
 )
 
 func loginRouter(r *gin.RouterGroup) {
-	r.GET("/login", controllers.GetStaff)
+	r.POST("/login", controllers.Login)
 }
 

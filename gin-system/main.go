@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"gin-system/dao"
 	"gin-system/pkg/setting"
 	"gin-system/routers"
@@ -12,6 +13,7 @@ func init() {
 }
 
 func main() {
+	endPoint := fmt.Sprintf(":%d", setting.ServerSetting.HttpPort)
 	routersInit := routers.InitRouter()
-	routersInit.Run()
+	routersInit.Run(endPoint)
 }

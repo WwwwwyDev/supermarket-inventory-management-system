@@ -3,7 +3,7 @@ package controllers
 import (
 	"gin-system/pkg/app"
 	"gin-system/pkg/e"
-	"gin-system/services/staffService"
+	"gin-system/services"
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
 )
@@ -26,7 +26,7 @@ func GetStaff(c *gin.Context)  {
 		"limit": limit,
 		"searchName": searchName,
 	}
-	err, info, total := staffService.GetAllStaff(staffParam)
+	err, info, total := services.GetAllStaff(staffParam)
 	//fmt.Println(info);
 	if err !=nil{
 		app.Error(c,e.ERROR,err,err.Error())
