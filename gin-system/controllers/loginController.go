@@ -28,5 +28,5 @@ func Login(c *gin.Context) {
 		app.INFO(c, 30001,"密码错误")
 		return
 	}
-	app.OK(c, map[string]interface{}{"user": staffData[0]},"OK")
+	app.OK(c, map[string]interface{}{"user": staffData[0]},"登录成功")
 }

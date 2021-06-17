@@ -73,19 +73,20 @@
 						this.$message.error(res.msg);
 						return;
 					}
-					if (res.code == 30001){
+					if (res.code == 30001) {
 						this.$message.error(res.msg);
 						return;
 					}
-					this.$message.success("登陆成功！！！");
-					//console.log(res.data.user.StaffName)
-					window.sessionStorage.setItem('username',res.data.user.StaffName);
-					//   //window.sessionStorage.setItem('flag','ok'); // session 放置
-					//   this.$message.success("登陆成功！！！");
-					//   //this.$router.push({ path: "/home"});
-					// }else{
-					//  this.$message.error("登录失败！！！");
-					// }
+					if (res.code == 20000) {
+						this.$message.success(res.msg);
+						//console.log(res.data.user.StaffName)
+						//console.log(res.data.user.StaffLevel)
+						window.sessionStorage.setItem('username', res.data.user.StaffName);
+						window.sessionStorage.setItem('level', res.data.user.StaffLevel);
+						this.$router.push({path: "/home"});
+						return;
+					}
+					this.$message.error("后台错误");
 				});
 			},
 		}
@@ -131,7 +132,7 @@
 
 		.btns {
 			display: flex; // 弹性布局
-			justify-content: flex-end; // 尾部对齐
+			justify-content: center; // 尾部对齐
 		}
 
 		.login_form {
