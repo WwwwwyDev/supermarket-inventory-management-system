@@ -1,4 +1,4 @@
-package services
+package staffService
 
 import (
 	"gin-system/dao"

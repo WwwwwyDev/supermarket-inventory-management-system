@@ -1,6 +1,9 @@
 package routers
 
-import "github.com/gin-gonic/gin"
+import (
+	"gin-system/middleWare"
+	"github.com/gin-gonic/gin"
+)
 
 func sysNoCheckRoleRouter(r *gin.RouterGroup) {
 	r = r.Group("/apis")
@@ -9,7 +12,7 @@ func sysNoCheckRoleRouter(r *gin.RouterGroup) {
 
 func InitRouter() *gin.Engine {
 	r := gin.New()
-
+	r.Use(middleWare.Cors())
 	g := r.Group("/system")
 
 	sysNoCheckRoleRouter(g)
