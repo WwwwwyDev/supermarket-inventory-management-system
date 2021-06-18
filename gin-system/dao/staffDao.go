@@ -14,6 +14,11 @@ func GetAllStaff(staffParam map[string]interface{}) (error, []models.Staff, int6
 	return err, staffData, total
 }
 
+func GetStaffById(id int) (error, models.Staff) {
+	var staffData models.Staff
+	err := db.Table("erp_staff").Where("staff_id = ? and is_del = false", id).Find(&staffData).Error
+	return err, staffData
+}
 
 func AddStaff(staff models.Staff) (error) {
 	err := db.Table("erp_staff").Select("staff_name", "staff_password", "staff_level", "staff_telephone", "staff_salary", "staff_remarks", "is_del",

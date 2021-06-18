@@ -84,7 +84,6 @@ router.beforeEach((to, from, next) => {
 	// 获取flag
 	const flagStr = window.sessionStorage.getItem("username"); // session取值
 	if (!flagStr) return next('/login'); // 没登录去登录
-	if (flagStr && to.path == '/') return next('/home'); // 登录去home
 	next();
 })
 

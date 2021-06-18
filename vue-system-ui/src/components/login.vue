@@ -70,15 +70,15 @@
 					} = await this.$http.post("system/apis/login", this.loginForm);
 					//console.log(res)
 					if (res.code == 30000) {
-						this.$message.error(res.msg);
+						this.$message.error("没有此用户");
 						return;
 					}
 					if (res.code == 30001) {
-						this.$message.error(res.msg);
+						this.$message.error("密码错误");
 						return;
 					}
 					if (res.code == 20000) {
-						this.$message.success(res.msg);
+						this.$message.success("登录成功");
 						//console.log(res.data.user.StaffName)
 						//console.log(res.data.user.StaffLevel)
 						//console.log(res.data.user)

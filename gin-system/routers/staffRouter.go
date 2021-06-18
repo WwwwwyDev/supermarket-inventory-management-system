@@ -7,4 +7,5 @@ import (
 
 func staffRouter(r *gin.RouterGroup) {
 	r.GET("/staff", controllers.GetStaff)
+	r.DELETE("/staff", controllers.DelStaff)
 }

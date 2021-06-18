@@ -18,5 +18,5 @@ func GetMenu(c *gin.Context){
 		app.Error(c,e.ERROR,err,err.Error())
 		return
 	}
-	app.OK(c, map[string]interface{}{"menus": info},"OK")
+	app.OK(c, map[string]interface{}{"menus": info},"查询成功")
 }

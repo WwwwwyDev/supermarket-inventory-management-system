@@ -14,7 +14,7 @@
 				<!--伸缩按钮-->
 				<div class="toggle-button" @click="toggleCollapase">|||</div>
 				<el-menu background-color="#545c64" text-color="#fff" active-text-color="#409eff" unique-opened
-					:collapse="isCollapse" :collapse-transition="false" :router="true">
+					:collapse="isCollapse" :collapse-transition="false" :router="true" :default-active="$route.path">
 					<el-menu-item index="/welcome" key="0">
 						<i class="el-icon-s-home"></i>
 						<template #title>主页</template>

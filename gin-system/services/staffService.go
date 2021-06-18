@@ -40,4 +40,7 @@ func DelStaff(id int) error {
 	return err
 }
 
-
+func GetStaffById(id int) (error, models.Staff) {
+	err, staffData:= dao.GetStaffById(id)
+	return err, staffData
+}
