@@ -41,7 +41,7 @@
 
 	<!-- 创建对话框 -->
 	<el-dialog title="添加员工" v-model="dialogAddVisible" width="50%">
-		<el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
+		<el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
 			<el-form-item label="姓名" prop="staffName">
 				<el-input v-model="addForm.staffName"></el-input>
 			</el-form-item>
