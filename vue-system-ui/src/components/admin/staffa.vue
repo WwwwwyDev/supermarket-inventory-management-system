@@ -25,7 +25,9 @@
 			<el-table-column label="操作" fixed="right">
 				<template #default="scope">
 					<!-- 修改 -->
-					<el-button type="primary" icon="el-icon-edit" size="mini" @click="dialogEditVisible = true"></el-button>
+					<el-button type="primary" icon="el-icon-edit" size="mini"
+						@click="dialogEditOpen(scope.row.StaffId, scope.row.StaffName,  scope.row.StaffPassword, scope.row.StaffLevel, scope.row.StaffTelephone, scope.row.StaffSalary, scope.row.StaffRemarks)">
+					</el-button>
 					<!-- 删除 -->
 					<el-button type="danger" icon="el-icon-delete" size="mini"
 						@click="deleteStaff(scope.row.StaffId,scope.row.StaffLevel)"></el-button>
@@ -65,11 +67,11 @@
 		</span>
 	</el-dialog>
 
-	<!-- 更新对话框 -->
-	<el-dialog title="更新员工" v-model="dialogEditVisible" width="50%">
+	<!-- 编辑对话框 -->
+	<el-dialog title="编辑员工" v-model="dialogEditVisible" width="50%">
 		<el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="70px">
 			<el-form-item label="编号" prop="id">
-				<el-input v-model="editForm.id"></el-input>
+				<el-input v-model="editForm.id" :disabled="true"></el-input>
 			</el-form-item>
 			<el-form-item label="姓名" prop="staffName">
 				<el-input v-model="editForm.staffName"></el-input>
@@ -91,7 +93,7 @@
 			</el-form-item>
 		</el-form>
 		<span slot="footer" class="dialog-footer" style="margin-left: 38%;">
-			<el-button type="primary" @click="">确 定</el-button>
+			<el-button type="primary" @click="updateStaff">确 定</el-button>
 			<el-button @click="dialogEditVisible = false">取 消</el-button>
 		</span>
 	</el-dialog>
@@ -136,8 +138,8 @@
 						},
 						{
 							min: 5,
-							max: 8,
-							message: "长度在 5 到 8 个字符",
+							max: 12,
+							message: "长度在 5 到 12 个字符",
 							trigger: "blur"
 						}
 					],
@@ -176,8 +178,8 @@
 						},
 						{
 							min: 5,
-							max: 8,
-							message: "长度在 5 到 8 个字符",
+							max: 12,
+							message: "长度在 5 到 12 个字符",
 							trigger: "blur"
 						}
 					],
@@ -260,7 +262,7 @@
 				this.$message.success("删除成功");
 				this.getStaffList();
 			},
-			// 添加用户
+			// 添加员工
 			addStaff() {
 				this.$refs.addFormRef.validate(async valid => {
 					if (!valid) return;
@@ -269,12 +271,38 @@
 						data: res
 					} = await this.$http.post("/system/apis/staff", this.addForm);
 					if (res.code == 20000) {
-						this.dialogAddVisible = false;
 						this.getStaffList();
+						this.dialogAddVisible = false;
 						return this.$message.success("添加成功");
 					}
 					this.$message.error("添加失败");
 				})
+			},
+			// 编辑员工
+			updateStaff() {
+				this.$refs.editFormRef.validate(async valid => {
+					if (!valid) return;
+					// 发起请求
+					const {
+						data: res
+					} = await this.$http.put("/system/apis/staff", this.editForm);
+					if (res.code == 20000) {
+						this.getStaffList();
+						this.dialogEditVisible = false;
+						return this.$message.success("编辑成功");
+					}
+					this.$message.error("编辑失败");
+				})
+			},
+			dialogEditOpen(id, staffName, staffPassword, staffLevel, staffTelephone, staffSalary, staffRemarks) {
+				this.editForm.id =  String(id);
+				this.editForm.staffName = staffName;
+				this.editForm.staffPassword = staffPassword;
+				this.editForm.staffLevel = String(staffLevel);
+				this.editForm.staffTelephone = staffTelephone;
+				this.editForm.staffSalary = staffSalary;
+				this.editForm.staffRemarks = staffRemarks;
+				this.dialogEditVisible = true;
 			},
 		},
 	}

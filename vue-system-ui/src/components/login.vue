@@ -38,8 +38,8 @@
 						},
 						{
 							min: 5,
-							max: 8,
-							message: "长度在 5 到 8 个字符",
+							max: 12,
+							message: "长度在 5 到 12 个字符",
 							trigger: "blur"
 						}
 					],
