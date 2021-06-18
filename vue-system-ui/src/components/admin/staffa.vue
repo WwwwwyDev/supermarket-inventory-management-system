@@ -33,7 +33,7 @@
 			</el-table-column>
 		</el-table>
 		<el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-			:current-page="queryInfo.page" :page-sizes="[1, 2, 5, 100]" :page-size="queryInfo.limit"
+			:current-page="queryInfo.page" :page-sizes="[1, 2, 10, 100]" :page-size="queryInfo.limit"
 			layout="total, sizes, prev, pager, next, jumper" :total="total"></el-pagination>
 	</el-card>
 </template>
@@ -46,7 +46,7 @@
 				queryInfo: {
 					searchName: "",
 					page: 1,
-					limit: 5
+					limit: 10
 				},
 				staffList: [], // 用户列表
 
