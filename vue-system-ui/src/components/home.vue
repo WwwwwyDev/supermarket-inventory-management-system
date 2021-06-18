@@ -1,4 +1,5 @@
 <template>
+	<el-backtop :bottom="60"></el-backtop>
 	<el-container class="home-container">
 		<!--头部布局-->
 		<el-header>
@@ -58,6 +59,7 @@
 			</span>
 		</template>
 	</el-dialog>
+
 </template>
 
 <script>

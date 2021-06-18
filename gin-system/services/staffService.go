@@ -3,7 +3,6 @@ package services
 import (
 	"gin-system/dao"
 	"gin-system/models"
-	"time"
 )
 
 func GetAllStaff(staffParam map[string]interface{}) (error, []models.Staff, int64) {
@@ -24,15 +23,14 @@ func GetStaffByName(name string) (error, []models.Staff, int64) {
 	return err, staffData, total
 }
 
-func AddStaff(staff models.Staff) (error, models.Staff) {
+func AddStaff(staff models.Staff) (error) {
 	err := dao.AddStaff(staff)
-	return err, staff
+	return err
 }
 
-func UpdateStaff(staff models.Staff) (error, models.Staff) {
-	staff.UpdateTime = time.Now()
+func UpdateStaff(staff models.Staff) (error) {
 	err := dao.UpdateStaff(staff)
-	return err, staff
+	return err
 }
 
 func DelStaff(id int) error {

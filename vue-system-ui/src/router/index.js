@@ -19,11 +19,17 @@ const routes = [
 
 	{
 		path: '/login',
-		component: Login
+		component: Login,
+		meta: {
+			title: "登录"
+		},
 	},
 	{
 		path: '/home',
 		component: Home,
+		meta: {
+			title: "主页"
+		},
 		redirect: '/welcome',
 		children: [{
 				path: '/welcome',
@@ -65,7 +71,10 @@ const routes = [
 	},
 	{
 		path: "/404",
-		component: Nf
+		component: Nf,
+		meta: {
+			title: "404"
+		},
 	},
 	{
 		path: "/:catchAll(.*)",
@@ -80,6 +89,9 @@ const router = createRouter({
 
 // 挂载路由导航守卫
 router.beforeEach((to, from, next) => {
+	if (to.meta.title) {
+		document.title = to.meta.title;
+	}
 	if (to.path == '/login') return next(); // 访问路径为登录
 	// 获取flag
 	const flagStr = window.sessionStorage.getItem("username"); // session取值

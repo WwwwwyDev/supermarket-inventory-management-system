@@ -2,7 +2,6 @@ package app
 
 import (
 	"github.com/gin-gonic/gin"
-	"log"
 	"net/http"
 )
 
@@ -19,7 +18,7 @@ func Error(c *gin.Context, code int, err error, msg string) {
 	if msg != "" {
 		res.Msg = msg
 	}
-	log.Fatal(res.Msg)
+	//log.Fatal(res.Msg)
 	c.JSON(http.StatusOK, res.ReturnError(code))
 }
 

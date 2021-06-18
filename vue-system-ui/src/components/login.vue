@@ -100,7 +100,7 @@
 <style lang="less" scoped>
 	// 跟节点样式
 	.login_container {
-		background-color: #2b4b6b;
+		background-color: #3e6d40;
 		height: 100%;
 	}
 

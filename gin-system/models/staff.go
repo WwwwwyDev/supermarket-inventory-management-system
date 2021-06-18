@@ -8,7 +8,7 @@ type Staff struct {
 	StaffPassword  string    `gorm:"column:staff_password"`
 	StaffLevel     int    `gorm:"column:staff_level"`
 	StaffTelephone string    `gorm:"column:staff_telephone"`
-	StaffSalary    int64    `gorm:"column:staff_salary"`
+	StaffSalary    int    `gorm:"column:staff_salary"`
 	StaffRemarks   string    `gorm:"column:staff_remarks"`
 	IsDel          bool      `gorm:"column:is_del"`
 	UpdateTime     time.Time `gorm:"column:update_time"`
