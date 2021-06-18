@@ -26,6 +26,15 @@ type Server struct {
 
 var ServerSetting = &Server{}
 
+type Redis struct {
+	Host        string
+	Password    string
+	MaxIdle     int
+	MaxActive   int
+	IdleTimeout int
+}
+
+var RedisSetting = &Redis{}
 
 var cfg *ini.File
 
@@ -37,6 +46,7 @@ func Setup()  {
 	}
 	mapTo("database", DatabaseSetting)
 	mapTo("server", ServerSetting)
+	mapTo("redis", RedisSetting)
 }
 
 func mapTo(section string, v interface{}) {

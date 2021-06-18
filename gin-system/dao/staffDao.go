@@ -25,7 +25,7 @@ func AddStaff(staff models.Staff) (error) {
 		"update_time").Create(&staff).Error
 	return err
 }
-//
+
 func UpdateStaff(staff models.Staff) (error) {
 	err := db.Table("erp_staff").Where("staff_id = ?", staff.StaffId).Updates(&staff).Error
 	return err
