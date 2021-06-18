@@ -13,7 +13,9 @@ import Staffa from '../components/admin/staffa.vue'
 import Goods from '../components/common/goods.vue'
 import Plc from '../components/common/pl.vue'
 import Pdc from '../components/common/pd.vue'
+import Nf from '../components/noFound.vue'
 const routes = [
+
 
 	{
 		path: '/login',
@@ -23,8 +25,7 @@ const routes = [
 		path: '/home',
 		component: Home,
 		redirect: '/welcome',
-		children: [
-			{
+		children: [{
 				path: '/welcome',
 				component: Welcome,
 			},
@@ -61,6 +62,14 @@ const routes = [
 				component: Goods
 			},
 		],
+	},
+	{
+		path: "/404",
+		component: Nf
+	},
+	{
+		path: "/:catchAll(.*)",
+		redirect: "/404"
 	},
 ]
 

@@ -50,8 +50,8 @@
 						},
 						{
 							min: 5,
-							max: 8,
-							message: "密码为 5~8 位",
+							max: 12,
+							message: "密码为 5~12 位",
 							trigger: "blur"
 						}
 					]

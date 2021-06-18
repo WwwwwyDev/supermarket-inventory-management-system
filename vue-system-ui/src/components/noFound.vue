@@ -1,7 +1,7 @@
 <template>
-	<el-empty description="welcome"></el-empty>
+		<el-empty description="404"></el-empty>
 </template>
-
+	
 <script>
 </script>
 
