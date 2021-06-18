@@ -6,11 +6,7 @@ import (
 )
 
 func GetAllStaff(staffParam map[string]interface{}) (error, []models.Staff, int64) {
-	var staffData []models.Staff
-	page := staffParam["page"].(int)
-	pageSize := staffParam["limit"].(int)
-	searchName := staffParam["searchName"].(string)
-	err, staffData, total := dao.GetAllStaff(map[string]interface{}{"page": page, "limit": pageSize, "searchName": searchName})
+	err, staffData, total := dao.GetAllStaff(staffParam)
 	return err, staffData, total
 }
 

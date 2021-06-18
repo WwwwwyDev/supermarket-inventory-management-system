@@ -10,6 +10,7 @@ func sysNoCheckRoleRouter(r *gin.RouterGroup) {
 	staffRouter(r)
 	loginRouter(r)
 	menuRouter(r)
+	supplierRouter(r)
 }
 
 func InitRouter() *gin.Engine {
