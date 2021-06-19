@@ -10,7 +10,7 @@ func GetAllSupplier(supplierParam map[string]interface{}) (error, []models.Suppl
 	pageSize := supplierParam["limit"].(int)
 	searchName := supplierParam["searchName"].(string)
 	var total int64
-	err := db.Table("erp_supplier").Where("supplier_name like ? and is_del = false", "%"+searchName+"%").Order("supplier_id ASC").Count(&total).Offset((page - 1) * pageSize).Limit(pageSize).Find(&supplierData).Error
+	err := db.Table("erp_supplier").Where("supplier_name like ? and is_del = false", searchName+"%").Order("supplier_id ASC").Count(&total).Offset((page - 1) * pageSize).Limit(pageSize).Find(&supplierData).Error
 	return err, supplierData, total
 }
 

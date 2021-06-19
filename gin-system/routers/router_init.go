@@ -13,6 +13,7 @@ func sysNoCheckRoleRouter(r *gin.RouterGroup) {
 	supplierRouter(r)
 	goodsRouter(r)
 	purchaseListRouter(r)
+	purchaseDetailsRouter(r)
 }
 
 func InitRouter() *gin.Engine {

@@ -10,8 +10,14 @@ func GetAllGoods(goodsParam map[string]interface{}) (error, []models.Goods, int6
 	pageSize := goodsParam["limit"].(int)
 	searchName := goodsParam["searchName"].(string)
 	var total int64
-	err := db.Table("erp_goods g").Select("g.goods_id, g.goods_name, g.goods_price, g.goods_supplier,s.supplier_name goods_supplier_name, g.goods_remarks,g.goods_synopsis,g.is_del, g.update_time").Joins("INNER JOIN erp_supplier s ON g.goods_supplier = s.supplier_id").Where("g.goods_name like ? and g.is_del = false", "%"+searchName+"%").Order("goods_id ASC").Count(&total).Offset((page - 1) * pageSize).Limit(pageSize).Find(&goodsData).Error
+	err := db.Table("erp_goods g").Select("g.goods_id, g.goods_name, g.goods_price, g.goods_supplier,s.supplier_name goods_supplier_name, g.goods_remarks,g.goods_synopsis,g.is_del, g.update_time").Joins("INNER JOIN erp_supplier s ON g.goods_supplier = s.supplier_id").Where("g.goods_name like ? and g.is_del = false", searchName+"%").Order("goods_id ASC").Count(&total).Offset((page - 1) * pageSize).Limit(pageSize).Find(&goodsData).Error
 	return err, goodsData, total
+}
+
+func GetGoodPriceById(id int) (error, int){
+	var goodsData models.Goods
+	err := db.Table("erp_goods").Where("goods_id = ? and is_del = false", id).Find(&goodsData).Error
+	return err, goodsData.GoodsPrice
 }
 
 func DelGoods(id int) error {

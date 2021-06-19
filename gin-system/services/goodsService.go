@@ -25,3 +25,8 @@ func AddGoods(goods models.Goods) (error) {
 	err := dao.AddGoods(goods)
 	return err
 }
+
+func GetGoodPriceById(id int) (error, int){
+	err, price := dao.GetGoodPriceById(id)
+	return err, price
+}

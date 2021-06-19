@@ -10,7 +10,7 @@ func GetAllStaff(staffParam map[string]interface{}) (error, []models.Staff, int6
 	pageSize := staffParam["limit"].(int)
 	searchName := staffParam["searchName"].(string)
 	var total int64
-	err := db.Table("erp_staff").Where("staff_name like ? and is_del = false", "%"+searchName+"%").Order("staff_id ASC").Count(&total).Offset((page-1)*pageSize).Limit(pageSize).Find(&staffData).Error
+	err := db.Table("erp_staff").Where("staff_name like ? and is_del = false", searchName+"%").Order("staff_id ASC").Count(&total).Offset((page-1)*pageSize).Limit(pageSize).Find(&staffData).Error
 	return err, staffData, total
 }
 
