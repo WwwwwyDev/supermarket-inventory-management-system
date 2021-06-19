@@ -13,7 +13,9 @@
 			</el-col>
 		</el-row>
 		<!-- 列表 -->
-		<el-table :data="goodsList" border stripe>
+		<el-table :data="goodsList" border stripe v-loading="isLoading"
+			element-loading-background="rgba(255, 255, 255, .5)" element-loading-text="加载中，请稍后..."
+			element-loading-spinner="el-icon-loading">
 			<el-table-column label="记录号" type="index" fixed="left"></el-table-column>
 			<el-table-column label="编号" prop="GoodsId"></el-table-column>
 			<el-table-column label="名称" prop="GoodsName"></el-table-column>
@@ -96,7 +98,7 @@
 	export default {
 		data() {
 			return {
-				// 请求数据
+				isLoading:false,
 				dialogAddVisible: false,
 				dialogEditVisible: false,
 				queryInfo: {
@@ -182,6 +184,7 @@
 		},
 		methods: {
 			async getGoodsList() {
+				this.isLoading = true;
 				// 调用post请求
 				const {
 					data: res
@@ -190,9 +193,11 @@
 				});
 				if (res.code != 20000) {
 					this.$message.error("加载用户列表失败");
+					this.isLoading = false;
 				}
 				this.goodsList = res.data.value; // 将返回数据赋值
 				this.total = res.data.total; // 总个数
+				this.isLoading = false;
 			},
 			// 监听pageSize改变的事件
 			handleSizeChange(newLimit) {

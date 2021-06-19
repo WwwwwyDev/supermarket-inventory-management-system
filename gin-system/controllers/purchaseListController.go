@@ -84,7 +84,7 @@ func AddPurchaseList(c *gin.Context){
 	b, _ := c.GetRawData()
 	var m map[string]string
 	_ = json.Unmarshal(b, &m)
-	purchaseListStaff := 0
+	purchaseListStaff := -1
 	purchaseListStaff = com.StrTo(m["purchaseListStaff"]).MustInt()
 	purchaseListNumber := 0
 	purchaseListNumber = com.StrTo(m["purchaseListNumber"]).MustInt()
