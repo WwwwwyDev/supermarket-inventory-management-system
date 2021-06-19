@@ -10,6 +10,6 @@ type Goods struct {
 	GoodsSupplierName string    `gorm:"column:goods_supplier_name"`
 	GoodsSynopsis     string    `gorm:"column:goods_synopsis"`
 	GoodsRemarks      string    `gorm:"column:goods_remarks"`
-	Is_del            bool      `gorm:"column:is_del"`
-	Update_time       time.Time `gorm:"column:update_time"`
+	Isdel            bool      `gorm:"column:is_del"`
+	UpdateTime       time.Time `gorm:"column:update_time"`
 }
