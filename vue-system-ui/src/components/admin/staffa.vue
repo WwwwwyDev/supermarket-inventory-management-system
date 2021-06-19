@@ -69,7 +69,7 @@
 
 	<!-- 编辑对话框 -->
 	<el-dialog title="编辑员工" v-model="dialogEditVisible" width="50%">
-		<el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="70px">
+		<el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
 			<el-form-item label="编号" prop="id">
 				<el-input v-model="editForm.id" :disabled="true"></el-input>
 			</el-form-item>

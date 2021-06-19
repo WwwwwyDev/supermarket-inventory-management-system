@@ -27,9 +27,9 @@
 			<el-table-column label="操作" fixed="right">
 				<template #default="scope">
 					<!-- 修改 -->
-					<!-- <el-button type="primary" icon="el-icon-edit" size="mini"
-						@click="dialogEditOpen(scope.row.StaffId, scope.row.StaffName,  scope.row.StaffPassword, scope.row.StaffLevel, scope.row.StaffTelephone, scope.row.StaffSalary, scope.row.StaffRemarks)">
-					</el-button> -->
+					<el-button type="primary" icon="el-icon-edit" size="mini"
+						@click="dialogEditOpen(scope.row.SupplierId, scope.row.SupplierName,  scope.row.SupplierShortname, scope.row.SupplierAddress, scope.row.SupplierCtelephone, scope.row.SupplierEmail, scope.row.SupplierLiaisonman, scope.row.SupplierLtelephone, scope.row.SupplierRemarks)">
+					</el-button>
 					<!-- 删除 -->
 					<el-button type="danger" icon="el-icon-delete" size="mini"
 						@click="deleteSupplier(scope.row.SupplierId)"></el-button>
@@ -75,35 +75,41 @@
 	</el-dialog>
 
 	<!-- 编辑对话框 -->
-	<!-- 	<el-dialog title="编辑员工" v-model="dialogEditVisible" width="50%">
-		<el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="70px">
+	<el-dialog title="编辑供应商" v-model="dialogEditVisible" width="50%">
+		<el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
 			<el-form-item label="编号" prop="id">
 				<el-input v-model="editForm.id" :disabled="true"></el-input>
 			</el-form-item>
-			<el-form-item label="姓名" prop="staffName">
-				<el-input v-model="editForm.staffName"></el-input>
+			<el-form-item label="名称" prop="supplierName">
+				<el-input v-model="editForm.supplierName"></el-input>
 			</el-form-item>
-			<el-form-item label="密码" prop="staffPassword">
-				<el-input v-model="editForm.staffPassword"></el-input>
+			<el-form-item label="简称" prop="supplierShortname">
+				<el-input v-model="editForm.supplierShortname"></el-input>
 			</el-form-item>
-			<el-form-item label="等级" prop="staffLevel">
-				<el-input v-model="editForm.staffLevel" :disabled="true"></el-input>
+			<el-form-item label="地址" prop="supplierAddress">
+				<el-input v-model="editForm.supplierAddress"></el-input>
 			</el-form-item>
-			<el-form-item label="电话" prop="staffTelephone">
-				<el-input v-model="editForm.staffTelephone"></el-input>
+			<el-form-item label="公司电话" prop="supplierCtelephone">
+				<el-input v-model="editForm.supplierCtelephone"></el-input>
 			</el-form-item>
-			<el-form-item label="薪水(分)" prop="staffSalary">
-				<el-input v-model="editForm.staffSalary"></el-input>
+			<el-form-item label="邮箱" prop="supplierEmail">
+				<el-input v-model="editForm.supplierEmail"></el-input>
 			</el-form-item>
-			<el-form-item label="备注" prop="staffRemarks">
-				<el-input v-model="editForm.staffRemarks"></el-input>
+			<el-form-item label="联系人" prop="supplierLiaisonman">
+				<el-input v-model="editForm.supplierLiaisonman"></el-input>
+			</el-form-item>
+			<el-form-item label="联系人电话" prop="supplierLtelephone">
+				<el-input v-model="editForm.supplierLtelephone"></el-input>
+			</el-form-item>
+			<el-form-item label="备注" prop="supplierRemarks">
+				<el-input v-model="editForm.supplierRemarks"></el-input>
 			</el-form-item>
 		</el-form>
 		<span slot="footer" class="dialog-footer" style="margin-left: 38%;">
-			<el-button type="primary" @click="updateStaff">确 定</el-button>
+			<el-button type="primary" @click="updateSupplier">确 定</el-button>
 			<el-button @click="dialogEditVisible = false">取 消</el-button>
 		</span>
-	</el-dialog> -->
+	</el-dialog>
 </template>
 
 <script>
@@ -140,12 +146,14 @@
 				},
 				editForm: {
 					id: '',
-					staffName: '',
-					staffPassword: '',
-					staffLevel: '1',
-					staffTelephone: '',
-					staffSalary: '',
-					staffRemarks: '',
+					supplierName: '',
+					supplierShortname: '',
+					supplierAddress: '',
+					supplierCtelephone: '',
+					supplierEmail: '',
+					supplierLiaisonman: '',
+					supplierLtelephone: '',
+					supplierRemarks: '',
 				},
 				addFormRules: {
 					supplierName: [{
@@ -176,7 +184,6 @@
 					supplierEmail: [{
 						required: true,
 						trigger: "blur",
-						message: "请输入供应商邮箱",
 						validator: checkEmail,
 					}],
 					supplierLiaisonman: [{
@@ -186,42 +193,39 @@
 					}],
 				},
 				editFormRules: {
-					staffName: [{
-							required: true,
-							message: "请输入用户名",
-							trigger: "blur"
-						},
-						{
-							min: 5,
-							max: 12,
-							message: "长度在 5 到 12 个字符",
-							trigger: "blur"
-						}
-					],
-					staffPassword: [{
-							required: true,
-							message: "请输入密码",
-							trigger: "blur"
-						},
-						{
-							min: 5,
-							max: 12,
-							message: "长度在 5 到 12 个字符",
-							trigger: "blur"
-						}
-					],
-					staffLevel: [{
+					supplierName: [{
 						required: true,
+						message: "请输入供应商名称",
 						trigger: "blur"
 					}],
-					staffSalary: [{
+					supplierShortname: [{
 						required: true,
-						message: "请输入薪水",
+						message: "请输入供应商简称",
 						trigger: "blur"
 					}],
-					staffTelephone: [{
+					supplierAddress: [{
 						required: true,
-						message: "请输入电话",
+						message: "请输入供应商地址",
+						trigger: "blur"
+					}],
+					supplierCtelephone: [{
+						required: true,
+						message: "请输入供应商公司电话",
+						trigger: "blur"
+					}],
+					supplierLtelephone: [{
+						required: true,
+						message: "请输入供应商联系人电话",
+						trigger: "blur"
+					}],
+					supplierEmail: [{
+						required: true,
+						trigger: "blur",
+						validator: checkEmail,
+					}],
+					supplierLiaisonman: [{
+						required: true,
+						message: "请输入供应商联系人",
 						trigger: "blur"
 					}],
 				},
@@ -233,7 +237,6 @@
 		methods: {
 			async getSupplierList() {
 				// 调用post请求
-				console.log(this.queryInfo)
 				const {
 					data: res
 				} = await this.$http.get("system/apis/supplier", {
@@ -292,30 +295,32 @@
 					this.$message.error("添加失败");
 				})
 			},
-			// 编辑员工
-			updateStaff() {
+			// 编辑供应商
+			updateSupplier() {
 				this.$refs.editFormRef.validate(async valid => {
 					if (!valid) return;
 					// 发起请求
 					const {
 						data: res
-					} = await this.$http.put("/system/apis/staff", this.editForm);
+					} = await this.$http.put("/system/apis/supplier", this.editForm);
 					if (res.code == 20000) {
-						this.getStaffList();
+						this.getSupplierList();
 						this.dialogEditVisible = false;
 						return this.$message.success("编辑成功");
 					}
 					this.$message.error("编辑失败");
 				})
 			},
-			dialogEditOpen(id, staffName, staffPassword, staffLevel, staffTelephone, staffSalary, staffRemarks) {
+			dialogEditOpen(id, supplierName,  supplierShortname, supplierAddress, supplierCtelephone, supplierEmail, supplierLiaisonman, supplierLtelephone, supplierRemarks) {
 				this.editForm.id = String(id);
-				this.editForm.staffName = staffName;
-				this.editForm.staffPassword = staffPassword;
-				this.editForm.staffLevel = String(staffLevel);
-				this.editForm.staffTelephone = staffTelephone;
-				this.editForm.staffSalary = staffSalary;
-				this.editForm.staffRemarks = staffRemarks;
+				this.editForm.supplierName = supplierName;
+				this.editForm.supplierShortname = supplierShortname;
+				this.editForm.supplierAddress = supplierAddress;
+				this.editForm.supplierCtelephone = supplierCtelephone;
+				this.editForm.supplierEmail = supplierEmail;
+				this.editForm.supplierLiaisonman = supplierLiaisonman;
+				this.editForm.supplierLtelephone = supplierLtelephone;
+				this.editForm.supplierRemarks = supplierRemarks;
 				this.dialogEditVisible = true;
 			},
 		},
