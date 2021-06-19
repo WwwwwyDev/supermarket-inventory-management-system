@@ -12,7 +12,7 @@
 				<el-button type="primary" @click="dialogAddVisible = true">添加供应商</el-button>
 			</el-col>
 		</el-row>
-		<!-- 用户列表 -->
+		<!-- 列表 -->
 		<el-table :data="supplierList" border stripe>
 			<el-table-column label="记录号" type="index" fixed="left"></el-table-column>
 			<el-table-column label="编号" prop="SupplierId"></el-table-column>
@@ -242,9 +242,8 @@
 				} = await this.$http.get("system/apis/supplier", {
 					params: this.queryInfo
 				});
-				console.log(res.data.value)
 				if (res.code != 20000) {
-					this.$message.error("加载用户列表失败");
+					this.$message.error("加载供应商列表失败");
 				}
 				this.supplierList = res.data.value; // 将返回数据赋值
 				this.total = res.data.total; // 总个数

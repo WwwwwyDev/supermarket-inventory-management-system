@@ -1,6 +1,8 @@
 package dao
 
-import "gin-system/models"
+import (
+	"gin-system/models"
+)
 
 func GetAllGoods(goodsParam map[string]interface{}) (error, []models.Goods, int64) {
 	var goodsData []models.Goods
@@ -19,5 +21,10 @@ func DelGoods(id int) error {
 
 func UpdateGoods(goods models.Goods) error {
 	err := db.Table("erp_goods").Where("goods_id = ?", goods.GoodsId).Updates(&goods).Error
+	return err
+}
+
+func AddGoods(goods models.Goods) (error) {
+	err := db.Table("erp_goods").Select("goods_name", "goods_price", "goods_supplier", "goods_synopsis", "goods_remarks", "is_del", "update_time").Create(&goods).Error
 	return err
 }

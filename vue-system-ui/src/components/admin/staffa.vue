@@ -12,7 +12,7 @@
 				<el-button type="primary" @click="dialogAddVisible = true">添加员工</el-button>
 			</el-col>
 		</el-row>
-		<!-- 用户列表 -->
+		<!-- 列表 -->
 		<el-table :data="staffList" border stripe>
 			<el-table-column label="记录号" type="index" fixed="left"></el-table-column>
 			<el-table-column label="编号" prop="StaffId"></el-table-column>

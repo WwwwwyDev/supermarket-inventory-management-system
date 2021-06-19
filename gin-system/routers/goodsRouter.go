@@ -8,6 +8,6 @@ import (
 func goodsRouter(r *gin.RouterGroup) {
 	r.GET("/goods", controllers.GetGoods)
 	r.DELETE("/goods", controllers.DelGoods)
-	//r.PUT("/staff", controllers.UpdateStaff)
-	//r.POST("/staff", controllers.AddStaff)
+	r.PUT("/goods", controllers.UpdateGoods)
+	r.POST("/goods", controllers.AddGoods)
 }

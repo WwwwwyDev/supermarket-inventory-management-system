@@ -4,7 +4,7 @@
 		<!--头部布局-->
 		<el-header>
 			<div>
-				<img src="../assets/logo.png" alt class="logo_img" />
+				<!-- <img src="../assets/logo.png" alt class="logo_img" /> -->
 				<span>超市进销存管理系统</span>
 			</div>
 			<el-button type="info" @click="dialogVisible = true">{{username}}</el-button>

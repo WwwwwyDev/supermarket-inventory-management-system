@@ -75,3 +75,20 @@ func UpdateGoods(c *gin.Context){
 	}
 	app.OK(c, map[string]interface{}{},"更新成功")
 }
+
+func AddGoods(c *gin.Context){
+	b, _ := c.GetRawData()
+	var m map[string]string
+	_ = json.Unmarshal(b, &m)
+	goodsName := m["goodsName"]
+	goodsPrice := com.StrTo(m["goodsPrice"]).MustInt()
+	goodsSupplier := com.StrTo(m["goodsSupplier"]).MustInt()
+	goodsSynopsis := m["goodsSynopsis"]
+	goodsRemarks := m["goodsRemarks"]
+	err := services.AddGoods(models.Goods{-1,goodsName,goodsPrice,goodsSupplier,"",goodsSynopsis,goodsRemarks, false, time.Now()})
+	if err !=nil{
+		app.Error(c,e.ERROR,err,err.Error())
+		return
+	}
+	app.OK(c, map[string]interface{}{},"添加成功")
+}

@@ -20,3 +20,8 @@ func UpdateGoods(goods models.Goods) error {
 	err := dao.UpdateGoods(goods)
 	return err
 }
+
+func AddGoods(goods models.Goods) (error) {
+	err := dao.AddGoods(goods)
+	return err
+}
