@@ -19,7 +19,6 @@ func main() {
 	//for i:=1; i < 10000; i++{
 	//	services.AddStaff(models.Staff{1,"testtest" + strconv.Itoa(i),"wwy123456",1,"2312312",132133,"测试用户",false,time.Now()})
 	//}
-	//fmt.Println(gredis.RedisConn.GetString("sys_config:sys.index.skinName"))
 	endPoint := fmt.Sprintf(":%d", setting.ServerSetting.HttpPort)
 	routersInit := routers.InitRouter()
 	routersInit.Run(endPoint)

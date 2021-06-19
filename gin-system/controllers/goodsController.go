@@ -62,10 +62,13 @@ func UpdateGoods(c *gin.Context){
 		app.INFO(c, 30000, "参数非法")
 		return
 	}
-	id := com.StrTo(m["id"]).MustInt()
+	id := -1;
+	id = com.StrTo(m["id"]).MustInt()
 	goodsName := m["goodsName"]
-	goodsPrice := com.StrTo(m["goodsPrice"]).MustInt()
-	goodsSupplier := com.StrTo(m["goodsSupplier"]).MustInt()
+	goodsPrice := -1
+	goodsPrice = com.StrTo(m["goodsPrice"]).MustInt()
+	goodsSupplier := -1
+	goodsSupplier = com.StrTo(m["goodsSupplier"]).MustInt()
 	goodsSynopsis := m["goodsSynopsis"]
 	goodsRemarks := m["goodsRemarks"]
 	err := services.UpdateGoods(models.Goods{id,goodsName,goodsPrice,goodsSupplier,"",goodsSynopsis,goodsRemarks, false, time.Now()})

@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-func GetStaff(c *gin.Context)  {
+func GetPurchaseList(c *gin.Context)  {
 	page := -1
 	if arg := c.Query("page"); arg != "" {
 		page = com.StrTo(arg).MustInt()
@@ -24,13 +24,12 @@ func GetStaff(c *gin.Context)  {
 	if arg := c.Query("searchName"); arg != "" {
 		searchName = arg
 	}
-	staffParam := map[string]interface{}{
+	purchaseListParam := map[string]interface{}{
 		"page": page,
 		"limit": limit,
 		"searchName": searchName,
 	}
-	err, info, total := services.GetAllStaff(staffParam)
-	//fmt.Println(info);
+	err, info, total := services.GetAllPurchaseList(purchaseListParam)
 	if err !=nil{
 		app.Error(c,e.ERROR,err,err.Error())
 		return
@@ -38,7 +37,8 @@ func GetStaff(c *gin.Context)  {
 	app.OK(c, map[string]interface{}{"value": info, "total": total},"查询成功")
 }
 
-func DelStaff(c *gin.Context){
+
+func DelPurchaseList(c *gin.Context){
 	id := -1
 	if arg := c.Query("id"); arg != "" {
 		id = com.StrTo(arg).MustInt()
@@ -47,16 +47,7 @@ func DelStaff(c *gin.Context){
 		app.INFO(c,30001,"参数错误")
 		return
 	}
-	err2, staff := services.GetStaffById(id)
-	if err2 !=nil{
-		app.Error(c,e.ERROR,err2,err2.Error())
-		return
-	}
-	if staff.StaffLevel == 2{
-		app.INFO(c,30000,"管理员用户不能删除")
-		return
-	}
-	err := services.DelStaff(id)
+	err := services.DelPurchaseList(id)
 	if err !=nil{
 		app.Error(c,e.ERROR,err,err.Error())
 		return
@@ -64,7 +55,7 @@ func DelStaff(c *gin.Context){
 	app.OK(c, map[string]interface{}{},"删除成功")
 }
 
-func UpdateStaff(c *gin.Context){
+func UpdatePurchaseList(c *gin.Context){
 	b, _ := c.GetRawData()
 	var m map[string]string
 	_ = json.Unmarshal(b, &m)
@@ -74,15 +65,14 @@ func UpdateStaff(c *gin.Context){
 	}
 	id := -1
 	id = com.StrTo(m["id"]).MustInt()
-	staffName := m["staffName"]
-	staffPassword := m["staffPassword"]
-	staffLevel := 0
-	staffLevel = com.StrTo(m["staffLevel"]).MustInt()
-	staffTelephone := m["staffTelephone"]
-	staffSalary := 0
-	staffSalary = com.StrTo(m["staffSalary"]).MustInt()
-	staffRemarks := m["staffRemarks"]
-	err := services.UpdateStaff(models.Staff{id,staffName,staffPassword,staffLevel,staffTelephone,staffSalary,staffRemarks,false,time.Now()})
+	purchaseListStaff := 0
+	purchaseListStaff = com.StrTo(m["purchaseListStaff"]).MustInt()
+	purchaseListNumber := 0
+	purchaseListNumber = com.StrTo(m["purchaseListNumber"]).MustInt()
+	purchaseListPrice := 0
+	purchaseListPrice = com.StrTo(m["purchaseListPrice"]).MustInt()
+	purchaseListRemarks := m["purchaseListRemarks"]
+	err := services.UpdatePurchaseList(models.PurchaseList{id, purchaseListStaff, "",purchaseListNumber,purchaseListPrice,time.Time{},purchaseListRemarks,time.Now(),false})
 	if err !=nil{
 		app.Error(c,e.ERROR,err,err.Error())
 		return
@@ -90,17 +80,18 @@ func UpdateStaff(c *gin.Context){
 	app.OK(c, map[string]interface{}{},"更新成功")
 }
 
-func AddStaff(c *gin.Context){
+func AddPurchaseList(c *gin.Context){
 	b, _ := c.GetRawData()
 	var m map[string]string
 	_ = json.Unmarshal(b, &m)
-	staffName := m["staffName"]
-	staffPassword := m["staffPassword"]
-	staffLevel := com.StrTo(m["staffLevel"]).MustInt()
-	staffTelephone := m["staffTelephone"]
-	staffSalary := com.StrTo(m["staffSalary"]).MustInt()
-	staffRemarks := m["staffRemarks"]
-	err := services.AddStaff(models.Staff{-1,staffName,staffPassword,staffLevel,staffTelephone,staffSalary,staffRemarks,false,time.Now()})
+	purchaseListStaff := 0
+	purchaseListStaff = com.StrTo(m["purchaseListStaff"]).MustInt()
+	purchaseListNumber := 0
+	purchaseListNumber = com.StrTo(m["purchaseListNumber"]).MustInt()
+	purchaseListPrice := 0
+	purchaseListPrice = com.StrTo(m["purchaseListPrice"]).MustInt()
+	purchaseListRemarks := m["purchaseListRemarks"]
+	err := services.AddPurchaseList(models.PurchaseList{-1,purchaseListStaff,"",purchaseListNumber,purchaseListPrice,time.Now(),purchaseListRemarks, time.Now(), false})
 	if err !=nil{
 		app.Error(c,e.ERROR,err,err.Error())
 		return

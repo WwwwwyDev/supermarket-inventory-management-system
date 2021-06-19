@@ -12,6 +12,7 @@ func sysNoCheckRoleRouter(r *gin.RouterGroup) {
 	menuRouter(r)
 	supplierRouter(r)
 	goodsRouter(r)
+	purchaseListRouter(r)
 }
 
 func InitRouter() *gin.Engine {

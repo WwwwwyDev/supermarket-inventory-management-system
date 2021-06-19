@@ -62,7 +62,8 @@ func UpdateSupplier(c *gin.Context){
 		app.INFO(c, 30000, "参数非法")
 		return
 	}
-	id := com.StrTo(m["id"]).MustInt()
+	id := -1
+	id = com.StrTo(m["id"]).MustInt()
 	supplierName := m["supplierName"]
 	supplierShortname := m["supplierShortname"]
 	supplierAddress := m["supplierAddress"]
