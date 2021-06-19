@@ -17,7 +17,7 @@
 			element-loading-background="rgba(255, 255, 255, .5)" element-loading-text="加载中，请稍后..."
 			element-loading-spinner="el-icon-loading">
 			<el-table-column label="记录号" type="index" fixed="left"></el-table-column>
-			<el-table-column label="编号" prop="SupplierId"></el-table-column>
+			<el-table-column label="供应商编号" prop="SupplierId"></el-table-column>
 			<el-table-column label="名称" prop="SupplierName"></el-table-column>
 			<el-table-column label="简称" prop="SupplierShortname"></el-table-column>
 			<el-table-column label="地址" prop="SupplierAddress"></el-table-column>
@@ -26,7 +26,7 @@
 			<el-table-column label="联系人" prop="SupplierLiaisonman"></el-table-column>
 			<el-table-column label="联系人电话" prop="SupplierLtelephone"></el-table-column>
 			<el-table-column label="备注" prop="SupplierRemarks"></el-table-column>
-			<el-table-column label="操作" fixed="right">
+			<el-table-column label="操作" fixed="right" width="150">
 				<template #default="scope">
 					<!-- 修改 -->
 					<el-button type="primary" icon="el-icon-edit" size="mini"
@@ -79,7 +79,7 @@
 	<!-- 编辑对话框 -->
 	<el-dialog title="编辑供应商" v-model="dialogEditVisible" width="50%">
 		<el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
-			<el-form-item label="编号" prop="id">
+			<el-form-item label="供应商编号" prop="id">
 				<el-input v-model="editForm.id" :disabled="true"></el-input>
 			</el-form-item>
 			<el-form-item label="名称" prop="supplierName">

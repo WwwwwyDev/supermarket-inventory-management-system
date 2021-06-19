@@ -17,7 +17,7 @@
 			element-loading-background="rgba(255, 255, 255, .5)" element-loading-text="加载中，请稍后..."
 			element-loading-spinner="el-icon-loading">
 			<el-table-column label="记录号" type="index" fixed="left"></el-table-column>
-			<el-table-column label="编号" prop="StaffId"></el-table-column>
+			<el-table-column label="员工编号" prop="StaffId"></el-table-column>
 			<el-table-column label="姓名" prop="StaffName"></el-table-column>
 			<el-table-column label="密码" prop="StaffPassword"></el-table-column>
 			<el-table-column label="等级" prop="StaffLevel" width="50"></el-table-column>
@@ -72,7 +72,7 @@
 	<!-- 编辑对话框 -->
 	<el-dialog title="编辑员工" v-model="dialogEditVisible" width="50%">
 		<el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
-			<el-form-item label="编号" prop="id">
+			<el-form-item label="员工编号" prop="id">
 				<el-input v-model="editForm.id" :disabled="true"></el-input>
 			</el-form-item>
 			<el-form-item label="姓名" prop="staffName">

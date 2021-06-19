@@ -17,7 +17,7 @@
 			element-loading-background="rgba(255, 255, 255, .5)" element-loading-text="加载中，请稍后..."
 			element-loading-spinner="el-icon-loading">
 			<el-table-column label="记录号" type="index" fixed="left"></el-table-column>
-			<el-table-column label="编号" prop="GoodsId"></el-table-column>
+			<el-table-column label="商品编号" prop="GoodsId"></el-table-column>
 			<el-table-column label="名称" prop="GoodsName"></el-table-column>
 			<el-table-column label="单价(分)" prop="GoodsPrice"></el-table-column>
 			<el-table-column label="供应商编号" prop="GoodsSupplier"></el-table-column>
@@ -68,7 +68,7 @@
 	<!-- 编辑对话框 -->
 	<el-dialog title="编辑商品" v-model="dialogEditVisible" width="50%">
 		<el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
-			<el-form-item label="编号" prop="id">
+			<el-form-item label="商品编号" prop="id">
 				<el-input v-model="editForm.id" :disabled="true"></el-input>
 			</el-form-item>
 			<el-form-item label="名称" prop="goodsName">

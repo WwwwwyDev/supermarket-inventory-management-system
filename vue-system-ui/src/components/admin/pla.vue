@@ -18,7 +18,7 @@
 			element-loading-background="rgba(255, 255, 255, 0.5)" element-loading-text="加载中，请稍后..."
 			element-loading-spinner="el-icon-loading">
 			<el-table-column label="记录号" type="index" fixed="left"></el-table-column>
-			<el-table-column label="编号" prop="PurchaseListId"></el-table-column>
+			<el-table-column label="清单编号" prop="PurchaseListId"></el-table-column>
 			<el-table-column label="员工编号" prop="PurchaseListStaff"></el-table-column>
 			<el-table-column label="员工姓名" prop="PurchaseListStaffName"></el-table-column>
 			<el-table-column label="采购总数量" prop="PurchaseListNumber"></el-table-column>
@@ -59,9 +59,9 @@
 	</el-dialog>
 
 	<!-- 编辑对话框 -->
-	<el-dialog title="编辑商品" v-model="dialogEditVisible" width="50%">
+	<el-dialog title="编辑采购清单" v-model="dialogEditVisible" width="50%">
 		<el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
-			<el-form-item label="编号" prop="id">
+			<el-form-item label="清单编号" prop="id">
 				<el-input v-model="editForm.id" :disabled="true"></el-input>
 			</el-form-item>
 			<el-form-item label="员工编号" prop="purchaseListStaff">
@@ -107,21 +107,11 @@
 						message: "请输入员工编号",
 						trigger: "blur"
 					}],
-					purchaseListRemarks: [{
-						required: true,
-						message: "请输入备注",
-						trigger: "blur"
-					}],
 				},
 				editFormRules: {
 					purchaseListStaff: [{
 						required: true,
 						message: "请输入员工编号",
-						trigger: "blur"
-					}],
-					purchaseListRemarks: [{
-						required: true,
-						message: "请输入备注",
 						trigger: "blur"
 					}],
 				},
@@ -157,7 +147,7 @@
 				this.queryInfo.page = newPage;
 				this.getPurchaseListList(); // 数据发生改变重新申请数据
 			},
-			async deletePurchaseList(purchaseList) {
+			async deletePurchaseList(purchaseListId) {
 				// 弹框
 				const confirmResult = await this.$confirm('此操作将永久删除该清单, 是否继续?', '提示', {
 					confirmButtonText: '确定',
@@ -170,7 +160,7 @@
 				}
 				const {
 					data: res
-				} = await this.$http.delete("system/apis/purchaseList?id=" + purchaseList);
+				} = await this.$http.delete("system/apis/purchaseList?id=" + purchaseListId);
 				if (res.code != 20000) {
 					return this.$message.error("删除失败");
 				}
