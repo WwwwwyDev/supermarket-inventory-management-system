@@ -18,7 +18,7 @@ func DelPurchaseList(id int) error {
 }
 
 func UpdatePurchaseList(purchaseList models.PurchaseList) error {
-	err := db.Table("erp_purchase_list").Select("purchase_list_staff", "purchase_list_number", "purchase_list_price", "purchase_list_remarks", "update_time", "is_del").Where("purchase_list_id = ?", purchaseList.PurchaseListId).Updates(&purchaseList).Error
+	err := db.Table("erp_purchase_list").Select("purchase_list_staff",  "purchase_list_remarks", "update_time", "is_del").Where("purchase_list_id = ?", purchaseList.PurchaseListId).Updates(&purchaseList).Error
 	return err
 }
 

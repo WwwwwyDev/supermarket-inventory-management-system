@@ -65,7 +65,7 @@ func UpdatePurchaseList(c *gin.Context){
 	}
 	id := -1
 	id = com.StrTo(m["id"]).MustInt()
-	purchaseListStaff := 0
+	purchaseListStaff := -1
 	purchaseListStaff = com.StrTo(m["purchaseListStaff"]).MustInt()
 	purchaseListNumber := 0
 	purchaseListNumber = com.StrTo(m["purchaseListNumber"]).MustInt()

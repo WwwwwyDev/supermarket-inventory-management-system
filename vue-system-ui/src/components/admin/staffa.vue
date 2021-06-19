@@ -301,12 +301,12 @@
 			},
 			dialogEditOpen(id, staffName, staffPassword, staffLevel, staffTelephone, staffSalary, staffRemarks) {
 				this.editForm.id =  String(id);
-				this.editForm.staffName = staffName;
-				this.editForm.staffPassword = staffPassword;
+				this.editForm.staffName = String(staffName);
+				this.editForm.staffPassword = String(staffPassword);
 				this.editForm.staffLevel = String(staffLevel);
-				this.editForm.staffTelephone = staffTelephone;
-				this.editForm.staffSalary = staffSalary;
-				this.editForm.staffRemarks = staffRemarks;
+				this.editForm.staffTelephone = String(staffTelephone);
+				this.editForm.staffSalary = String(staffSalary);
+				this.editForm.staffRemarks = String(staffRemarks);
 				this.dialogEditVisible = true;
 			},
 		},

@@ -317,14 +317,14 @@
 			},
 			dialogEditOpen(id, supplierName,  supplierShortname, supplierAddress, supplierCtelephone, supplierEmail, supplierLiaisonman, supplierLtelephone, supplierRemarks) {
 				this.editForm.id = String(id);
-				this.editForm.supplierName = supplierName;
-				this.editForm.supplierShortname = supplierShortname;
-				this.editForm.supplierAddress = supplierAddress;
-				this.editForm.supplierCtelephone = supplierCtelephone;
-				this.editForm.supplierEmail = supplierEmail;
-				this.editForm.supplierLiaisonman = supplierLiaisonman;
-				this.editForm.supplierLtelephone = supplierLtelephone;
-				this.editForm.supplierRemarks = supplierRemarks;
+				this.editForm.supplierName = String(supplierName);
+				this.editForm.supplierShortname = String(supplierShortname);
+				this.editForm.supplierAddress = String(supplierAddress);
+				this.editForm.supplierCtelephone = String(supplierCtelephone);
+				this.editForm.supplierEmail = String(supplierEmail);
+				this.editForm.supplierLiaisonman = String(supplierLiaisonman);
+				this.editForm.supplierLtelephone = String(supplierLtelephone);
+				this.editForm.supplierRemarks = String(supplierRemarks);
 				this.dialogEditVisible = true;
 			},
 		},

@@ -9,7 +9,7 @@
 			</el-col>
 
 			<el-col :span="4">
-				<el-button type="primary" @click="dialogAddVisible = true">添加供应商</el-button>
+				<el-button type="primary" @click="dialogAddVisible = true">添加商品</el-button>
 			</el-col>
 		</el-row>
 		<!-- 列表 -->
@@ -263,11 +263,11 @@
 			},
 			dialogEditOpen(id, goodsName, goodsPrice, goodsSupplier, goodsSynopsis, goodsRemarks) {
 				this.editForm.id = String(id);
-				this.editForm.goodsName = goodsName;
-				this.editForm.goodsPrice = goodsPrice;
-				this.editForm.goodsSupplier = goodsSupplier;
-				this.editForm.goodsSynopsis = goodsSynopsis;
-				this.editForm.goodsRemarks = goodsRemarks;
+				this.editForm.goodsName = String(goodsName);
+				this.editForm.goodsPrice = String(goodsPrice);
+				this.editForm.goodsSupplier = String(goodsSupplier);
+				this.editForm.goodsSynopsis = String(goodsSynopsis);
+				this.editForm.goodsRemarks = String(goodsRemarks);
 				this.dialogEditVisible = true;
 			},
 		},

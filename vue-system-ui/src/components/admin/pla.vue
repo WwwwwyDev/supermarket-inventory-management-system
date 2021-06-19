@@ -4,7 +4,8 @@
 		<el-row :gutter="25">
 			<el-col :span="7">
 				<!-- 搜索添加 -->
-				<el-input placeholder="请输入搜索负责采购员工的姓名" v-model.lazy="queryInfo.searchName" @change="getPurchaseListList">
+				<el-input placeholder="请输入搜索负责采购员工的姓名" v-model.lazy="queryInfo.searchName"
+					@change="getPurchaseListList">
 				</el-input>
 			</el-col>
 
@@ -14,7 +15,7 @@
 		</el-row>
 		<!-- 列表 -->
 		<el-table :data="purchaseListList" border stripe v-loading="isLoading"
-			element-loading-background="rgba(255, 255, 255, .5)" element-loading-text="加载中，请稍后..."
+			element-loading-background="rgba(255, 255, 255, 0.5)" element-loading-text="加载中，请稍后..."
 			element-loading-spinner="el-icon-loading">
 			<el-table-column label="记录号" type="index" fixed="left"></el-table-column>
 			<el-table-column label="编号" prop="PurchaseListId"></el-table-column>
@@ -27,9 +28,9 @@
 			<el-table-column label="操作" fixed="right">
 				<template #default="scope">
 					<!-- 修改 -->
-					<!-- 		<el-button type="primary" icon="el-icon-edit" size="mini"
-						@click="dialogEditOpen(scope.row.GoodsId, scope.row.GoodsName,  scope.row.GoodsPrice, scope.row.GoodsSupplier,  scope.row.GoodsSynopsis, scope.row.GoodsRemarks)">
-					</el-button> -->
+					<el-button type="primary" icon="el-icon-edit" size="mini"
+						@click="dialogEditOpen(scope.row.PurchaseListId, scope.row.PurchaseListStaff,  scope.row.PurchaseListRemarks)">
+					</el-button>
 					<!-- 删除 -->
 					<el-button type="danger" icon="el-icon-delete" size="mini"
 						@click="deletePurchaseList(scope.row.PurchaseListId)">
@@ -42,12 +43,12 @@
 			layout="total, sizes, prev, pager, next, jumper" :total="total"></el-pagination>
 	</el-card>
 
-		<el-dialog title="添加采购清单" v-model="dialogAddVisible" width="50%">
+	<el-dialog title="添加采购清单" v-model="dialogAddVisible" width="50%">
 		<el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
 			<el-form-item label="员工编号" prop="purchaseListStaff">
 				<el-input v-model="addForm.purchaseListStaff"></el-input>
 			</el-form-item>
-			<el-form-item label="备注" prop="purchaseListStaff">
+			<el-form-item label="备注" prop="purchaseListRemarks">
 				<el-input v-model="addForm.purchaseListRemarks"></el-input>
 			</el-form-item>
 		</el-form>
@@ -58,39 +59,30 @@
 	</el-dialog>
 
 	<!-- 编辑对话框 -->
-	<!-- 	<el-dialog title="编辑商品" v-model="dialogEditVisible" width="50%">
+	<el-dialog title="编辑商品" v-model="dialogEditVisible" width="50%">
 		<el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="100px">
 			<el-form-item label="编号" prop="id">
 				<el-input v-model="editForm.id" :disabled="true"></el-input>
 			</el-form-item>
-			<el-form-item label="名称" prop="goodsName">
-				<el-input v-model="editForm.goodsName"></el-input>
+			<el-form-item label="员工编号" prop="purchaseListStaff">
+				<el-input v-model="editForm.purchaseListStaff"></el-input>
 			</el-form-item>
-			<el-form-item label="单价(分)" prop="goodsPrice">
-				<el-input v-model="editForm.goodsPrice"></el-input>
-			</el-form-item>
-			<el-form-item label="供应商编号" prop="goodsSupplier">
-				<el-input v-model="editForm.goodsSupplier"></el-input>
-			</el-form-item>
-			<el-form-item label="简介" prop="goodsSynopsis">
-				<el-input v-model="editForm.goodsSynopsis"></el-input>
-			</el-form-item>
-			<el-form-item label="备注" prop="goodsRemarks">
-				<el-input v-model="editForm.goodsRemarks"></el-input>
+			<el-form-item label="备注" prop="purchaseListRemarks">
+				<el-input v-model="editForm.purchaseListRemarks"></el-input>
 			</el-form-item>
 		</el-form>
 		<span slot="footer" class="dialog-footer" style="margin-left: 38%;">
-			<el-button type="primary" @click="updateGoods">确 定</el-button>
+			<el-button type="primary" @click="updatePurchaseList">确 定</el-button>
 			<el-button @click="dialogEditVisible = false">取 消</el-button>
 		</span>
-	</el-dialog> -->
+	</el-dialog>
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
-				isLoading:false,
+				isLoading: false,
 				dialogAddVisible: false,
 				dialogEditVisible: false,
 				queryInfo: {
@@ -106,11 +98,8 @@
 				},
 				editForm: {
 					id: '',
-					goodsName: '',
-					goodsPrice: '',
-					goodsSupplier: '',
-					goodsSynopsis: '',
-					goodsRemarks: '',
+					purchaseListStaff: '',
+					purchaseListRemarks: '',
 				},
 				addFormRules: {
 					purchaseListStaff: [{
@@ -125,27 +114,12 @@
 					}],
 				},
 				editFormRules: {
-					goodsName: [{
+					purchaseListStaff: [{
 						required: true,
-						message: "请输入商品名称",
+						message: "请输入员工编号",
 						trigger: "blur"
 					}],
-					goodsPrice: [{
-						required: true,
-						message: "请输入商品单价",
-						trigger: "blur"
-					}],
-					goodsSupplier: [{
-						required: true,
-						message: "请输入供应商编号",
-						trigger: "blur"
-					}],
-					goodsSynopsis: [{
-						required: true,
-						message: "请输入简介",
-						trigger: "blur"
-					}],
-					goodsRemarks: [{
+					purchaseListRemarks: [{
 						required: true,
 						message: "请输入备注",
 						trigger: "blur"
@@ -220,28 +194,25 @@
 				})
 			},
 			// 编辑
-			updateGoods() {
+			updatePurchaseList() {
 				this.$refs.editFormRef.validate(async valid => {
 					if (!valid) return;
 					// 发起请求
 					const {
 						data: res
-					} = await this.$http.put("/system/apis/goods", this.editForm);
+					} = await this.$http.put("/system/apis/purchaseList", this.editForm);
 					if (res.code == 20000) {
-						this.getGoodsList();
+						this.getPurchaseListList();
 						this.dialogEditVisible = false;
 						return this.$message.success("编辑成功");
 					}
 					this.$message.error("编辑失败");
 				})
 			},
-			dialogEditOpen(id, goodsName, goodsPrice, goodsSupplier, goodsSynopsis, goodsRemarks) {
+			dialogEditOpen(id, purchaseListStaff, purchaseListRemarks) {
 				this.editForm.id = String(id);
-				this.editForm.goodsName = goodsName;
-				this.editForm.goodsPrice = goodsPrice;
-				this.editForm.goodsSupplier = goodsSupplier;
-				this.editForm.goodsSynopsis = goodsSynopsis;
-				this.editForm.goodsRemarks = goodsRemarks;
+				this.editForm.purchaseListStaff = String(purchaseListStaff);
+				this.editForm.purchaseListRemarks = String(purchaseListRemarks);
 				this.dialogEditVisible = true;
 			},
 		},
