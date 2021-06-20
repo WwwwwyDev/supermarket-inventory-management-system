@@ -1,19 +1,17 @@
-# vue-system-ui
+# 运行步骤
 
-## Project setup
+## 下载依赖
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 运行服务
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 编译部署
 ```
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

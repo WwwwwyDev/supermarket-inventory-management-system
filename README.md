@@ -1,6 +1,6 @@
 # 程序设计报告
 
-姓名：吴文益 班级：软件193 学号：2019082323
+姓名：吴文益    班级：软件193    学号：2019082323
 
 ## 题目
 
@@ -601,3 +601,4 @@ err := db.Table("erp_purchase_list p").Select("p.purchase_list_id, p.purchase_li
 
 #### 编辑视图
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105349_55cdbfad_6512114.png "截屏2021-06-20 上午10.41.01.png")
+
