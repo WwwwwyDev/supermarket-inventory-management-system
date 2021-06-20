@@ -575,15 +575,29 @@ err := db.Table("erp_purchase_list p").Select("p.purchase_list_id, p.purchase_li
 使用element-plus进行视图美化
 
 #### 登录界面
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105047_a2fab8b5_6512114.png "截屏2021-06-20 上午10.38.21.png")
 
 #### 动态路由
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105103_5143c807_6512114.png "截屏2021-06-20 上午10.40.13.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105116_b37e0bef_6512114.png "截屏2021-06-20 上午10.40.28.png")
 
 #### 管理员视图
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105140_7da87ff1_6512114.png "截屏2021-06-20 上午10.38.49.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105151_69167852_6512114.png "截屏2021-06-20 上午10.38.54.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105203_45a9aa03_6512114.png "截屏2021-06-20 上午10.38.58.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105213_a7ae1561_6512114.png "截屏2021-06-20 上午10.39.03.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105223_fdf649fa_6512114.png "截屏2021-06-20 上午10.39.08.png")
 
 #### 普通用户视图
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105241_a55b6a91_6512114.png "截屏2021-06-20 上午10.39.48.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105251_3b1e2951_6512114.png "截屏2021-06-20 上午10.39.53.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105259_9aa50050_6512114.png "截屏2021-06-20 上午10.39.57.png")
 
 #### 查看个人信息视图
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105312_d8ed057e_6512114.png "截屏2021-06-20 上午10.39.22.png")
 
 #### 添加视图
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105331_34c9f92f_6512114.png "截屏2021-06-20 上午10.40.46.png")
 
 #### 编辑视图
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/105349_55cdbfad_6512114.png "截屏2021-06-20 上午10.41.01.png")
