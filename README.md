@@ -86,7 +86,7 @@
 
 - 视图层:vue3.0
 - 控制层:gin+gorm
-- 持久化:postgresql
+- 持久化:postgresql+redis
 
 ### 持久化
 
