@@ -388,7 +388,7 @@ CREATE INDEX "list_goods_btree" ON "public"."erp_purchase_details" USING btree (
 内连supplier表，对goods_name字段进行模糊分页查询，并计算查询总条数
 
 ```go
-db.Table("erp_goods g").Select("g.goods_id, g.goods_name, g.goods_price, g.goods_supplier,s.supplier_name goods_supplier_name, g.goods_remarks,g.goods_synopsis,g.is_del, g.update_time").Joins("INNER JOIN erp_supplier s ON g.goods_supplier = s.supplier_id").Where("g.goods_name like ? and g.is_del = false", searchName+"%").Order("goods_id ASC").Count(&total).Offset((page - 1) * pageSize).Limit(pageSize).Find(&goodsData).Error
+err := db.Table("erp_goods g").Select("g.goods_id, g.goods_name, g.goods_price, g.goods_supplier,s.supplier_name goods_supplier_name, g.goods_remarks,g.goods_synopsis,g.is_del, g.update_time").Joins("INNER JOIN erp_supplier s ON g.goods_supplier = s.supplier_id").Where("g.goods_name like ? and g.is_del = false", searchName+"%").Order("goods_id ASC").Count(&total).Offset((page - 1) * pageSize).Limit(pageSize).Find(&goodsData).Error
 ```
 
 ##### menuDao
