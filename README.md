@@ -525,9 +525,9 @@ err := db.Table("erp_purchase_list p").Select("p.purchase_list_id, p.purchase_li
 
 ##### menuController
 
-| 函数名  | 函数功能                             |
-| ------- | ------------------------------------ |
-| GetMenu | 接受get请求头的“level”参数，进行登录 |
+| 函数名  | 函数功能                                     |
+| ------- | -------------------------------------------- |
+| GetMenu | 接受get请求头的“level”参数，进行查询菜单操作 |
 
 ##### purchaseDetailsController
 
