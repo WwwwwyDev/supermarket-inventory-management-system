@@ -282,6 +282,7 @@ CREATE INDEX "list_goods_btree" ON "public"."erp_purchase_details" USING btree (
 #### Redis
 
 用于缓存postgresql中的sys_menu实体
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0620/111556_01076f3d_6512114.png "截屏2021-06-20 上午11.09.04.png")
 
 ### 控制层
 
