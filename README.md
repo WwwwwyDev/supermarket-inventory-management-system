@@ -80,7 +80,7 @@
 
 ### 软件架构图
 
-![WEB开发技术架构图](/Users/wuwenyi/Desktop/WEB开发技术架构图.png)
+![软件架构图](https://images.gitee.com/uploads/images/2021/0620/104705_3051979e_6512114.png "WEB开发技术架构图.png")
 
 ### 技术栈
 
@@ -92,11 +92,11 @@
 
 #### 数据库概念模型设计(ER图)
 
-![ER](/Users/wuwenyi/Desktop/ER.png)
+![ER](https://images.gitee.com/uploads/images/2021/0620/104730_4125dced_6512114.png "ER.png")
 
 #### PostgreSQL数据库物理模型设计
 
-![模型](/Users/wuwenyi/Desktop/模型.png)
+![模型](https://images.gitee.com/uploads/images/2021/0620/104838_1734bd16_6512114.png "模型.png")
 
 #### PostgreSQL
 
