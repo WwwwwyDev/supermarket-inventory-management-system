@@ -278,6 +278,7 @@
 					if (res.code == 20000) {
 						this.getStaffList();
 						this.dialogAddVisible = false;
+						this.addForm = [];
 						return this.$message.success("添加成功");
 					}
 					this.$message.error("添加失败");
