@@ -5,7 +5,7 @@ import installElementPlus from './plugins/element'
 import './assets/css/global.css'
 import axios from'axios'
 // 设置请求的根路径
-axios.defaults.baseURL = "http://81.70.8.101:9000/"
+//axios.defaults.baseURL = "http://127.0.0.1:9000/"
 
 
 const app = createApp(App)
