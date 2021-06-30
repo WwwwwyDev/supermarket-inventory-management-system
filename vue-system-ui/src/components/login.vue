@@ -20,6 +20,7 @@
 			</el-form>
 		</div>
 	</div>
+
 </template>
 
 <script>
@@ -59,6 +60,31 @@
 			};
 		},
 		methods: {
+			varify(lres,that) {
+				let appid = '2074448262'; // 腾讯云控制台中对应这个项目的 appid
+				//生成一个滑块验证码对象
+				let captcha = new TencentCaptcha(appid, function(res) {
+					// 用户滑动结束或者关闭弹窗，腾讯返回的内容
+					console.log(res.ret)
+					if (res.ret === 0) {
+						//成功，传递数据给后台进行验证
+						window.sessionStorage.setItem('username', lres.data.user.StaffName);
+						window.sessionStorage.setItem('level', lres.data.user.StaffLevel);
+						window.sessionStorage.setItem('salary', lres.data.user.StaffSalary);
+						window.sessionStorage.setItem('remarks', lres.data.user.StaffRemarks);
+						window.sessionStorage.setItem('telephone', lres.data.user.StaffTelephone);
+						that.$message.success("登录成功");
+						that.$router.push({
+							path: "/home"
+						});
+					} else {
+						// 提示用户完成验证
+						this.$message.error("请完成验证");
+					}
+				});
+				// 滑块显示
+				captcha.show();
+			},
 			resetLoginForm() {
 				this.$refs.loginFormRef.resetFields();
 			},
@@ -73,24 +99,17 @@
 						this.$message.error("没有此用户");
 						return;
 					}
-					if (res.code == 30001) {
+					else if (res.code == 30001) {
 						this.$message.error("密码错误");
 						return;
 					}
-					if (res.code == 20000) {
-						this.$message.success("登录成功");
-						//console.log(res.data.user.StaffName)
-						//console.log(res.data.user.StaffLevel)
-						//console.log(res.data.user)
-						window.sessionStorage.setItem('username', res.data.user.StaffName);
-						window.sessionStorage.setItem('level', res.data.user.StaffLevel);
-						window.sessionStorage.setItem('salary', res.data.user.StaffSalary);
-						window.sessionStorage.setItem('remarks', res.data.user.StaffRemarks);
-						window.sessionStorage.setItem('telephone', res.data.user.StaffTelephone);
-						this.$router.push({path: "/home"});
-						return;
+					else if (res.code == 20000) {
+						this.varify(res,this);
+						// console.log(res.data.user.StaffName);
+						// console.log(res.data.user.StaffLevel);
+						// console.log(res.data.user);
 					}
-					this.$message.error("后台错误");
+					else this.$message.error("后台错误");
 				});
 			},
 		}
