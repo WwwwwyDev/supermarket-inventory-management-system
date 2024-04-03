@@ -1,14 +1,9 @@
 # 程序设计报告
 
-qq:773323518
-
 ## 题目
 
 超市进销存管理系统
 
-## 代码及版本管理地址
-
-[gitee码云版本地址(点击跳转)](https://gitee.com/wu_wen_yi/supermarket-inventory-management-system)
 
 ## 问题描述
 
